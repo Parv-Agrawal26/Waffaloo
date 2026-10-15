@@ -1,9 +1,12 @@
 "use client";
+import { useState, useEffect } from "react";
 import styles from "./Footer.module.css";
 
 const NAV = ["About", "Menu", "Locations", "Catering", "Contact"];
 
 export default function Footer() {
+  const [year, setYear] = useState(null);
+  useEffect(() => { setYear(new Date().getFullYear()); }, []);
   return (
     <footer className={styles.footer} aria-label="Site footer">
 
@@ -96,7 +99,7 @@ export default function Footer() {
       <div className={styles.bottomBar}>
         <div className={styles.bottomInner}>
           <p className={styles.copyright}>
-            © {new Date().getFullYear()} Waffaloo. All rights reserved.
+            © {year} Waffaloo. All rights reserved.
           </p>
           <p className={styles.credit}>
             A concept project by{" "}
