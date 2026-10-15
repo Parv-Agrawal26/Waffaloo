@@ -12,6 +12,8 @@ export default function Loader() {
       setFading(true);
       setTimeout(() => setGone(true), 400);
     };
+    const start = Date.now();
+    const MIN_TIME = 1500;
     const promises = Array.from({ length: 100 }, (_, i) => {
       const n = String(i + 1).padStart(3, "0");
       return new Promise((res) => {
@@ -21,7 +23,11 @@ export default function Loader() {
         img.src = `https://res.cloudinary.com/dq9lvxqef/image/upload/f_auto,q_auto/ezgif-frame-${n}.png`;
       });
     });
-    Promise.all(promises).then(hide);
+    Promise.all(promises).then(() => {
+      const elapsed = Date.now() - start;
+      const remaining = Math.max(0, MIN_TIME - elapsed);
+      setTimeout(hide, remaining);
+    });
     const t = setTimeout(hide, 15000);
     return () => clearTimeout(t);
   }, []);
