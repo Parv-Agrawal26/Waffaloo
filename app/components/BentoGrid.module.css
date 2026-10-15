@@ -1,0 +1,406 @@
+/* ── Section ────────────────────────────────────────────── */
+.section {
+  position: relative;
+  width: 100%;
+  padding: clamp(64px, 10vw, 120px) clamp(20px, 5vw, 80px);
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+/* Subtle ambient glow behind the whole grid */
+.section::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70vw;
+  height: 50vh;
+  background: radial-gradient(ellipse, rgba(232, 160, 32, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Section header ─────────────────────────────────────── */
+.sectionHeader {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(36px, 6vw, 64px);
+  text-align: center;
+}
+
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+}
+
+.heading {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  line-height: 1.1;
+}
+
+/* ── Grid container ─────────────────────────────────────── */
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ── Base card ──────────────────────────────────────────── */
+.card {
+  position: relative;
+  border-radius: 20px;
+  padding: clamp(20px, 3vw, 32px);
+  background: rgba(19, 16, 9, 0.7);
+  border: 1px solid rgba(232, 160, 32, 0.1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  transition: border-color 0.3s ease, transform 0.3s var(--ease-expo);
+}
+
+.card:hover {
+  border-color: rgba(232, 160, 32, 0.25);
+  transform: translateY(-3px);
+}
+
+/* Per-card ambient glow */
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 30% 0%, rgba(232, 160, 32, 0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+/* ── Grid placement ─────────────────────────────────────── */
+
+/* A — tall left, spans 2 rows */
+.cardA {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* B — wide stats, top-right spanning 2 cols */
+.cardB {
+  grid-column: 2 / 4;
+  grid-row: 1;
+}
+
+/* C — menu list */
+.cardC {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* D — ingredients */
+.cardD {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* E — catering, spans 2 cols */
+.cardE {
+  grid-column: 1 / 3;
+  grid-row: 3;
+}
+
+/* F — quote */
+.cardF {
+  grid-column: 3;
+  grid-row: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(232, 160, 32, 0.1) 0%, rgba(19, 16, 9, 0.8) 100%);
+}
+
+/* ── Card tag pill ──────────────────────────────────────── */
+.cardTag {
+  display: inline-flex;
+  align-self: flex-start;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  background: rgba(245, 200, 66, 0.1);
+  border: 1px solid rgba(245, 200, 66, 0.25);
+  border-radius: 100px;
+  padding: 4px 10px;
+  margin-bottom: 16px;
+}
+
+/* ── Typography ─────────────────────────────────────────── */
+.cardEyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.cardTitleSm {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.cardDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.78rem, 1.1vw, 0.88rem);
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(240, 232, 212, 0.6);
+}
+
+.cardDescSm {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.72rem, 1vw, 0.82rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(240, 232, 212, 0.55);
+}
+
+/* ── Card A — waffle art ────────────────────────────────── */
+.cardBody {
+  flex: 1;
+}
+
+.cardWaffleArt {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.waffleEmoji {
+  font-size: clamp(4rem, 8vw, 7rem);
+  filter: drop-shadow(0 0 32px rgba(232, 160, 32, 0.4));
+  line-height: 1;
+}
+
+/* ── Card B — stats ─────────────────────────────────────── */
+.statRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.statNum {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--gold-light);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.62rem, 0.9vw, 0.72rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.statDivider {
+  width: 1px;
+  height: 40px;
+  background: rgba(232, 160, 32, 0.15);
+  flex-shrink: 0;
+}
+
+/* ── Card C — menu list ─────────────────────────────────── */
+.menuList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(232, 160, 32, 0.08);
+}
+
+.menuItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.menuName {
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(0.72rem, 1vw, 0.82rem);
+  font-weight: 500;
+  color: rgba(240, 232, 212, 0.8);
+}
+
+.menuTag {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  background: rgba(232, 160, 32, 0.08);
+  border: 1px solid rgba(232, 160, 32, 0.2);
+  border-radius: 100px;
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+/* ── Card D — ingredients ───────────────────────────────── */
+.iconRow {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ingredientIcon {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba(232, 160, 32, 0.3));
+}
+
+/* ── Card E — CTA ───────────────────────────────────────── */
+.cardCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, #e8a020 0%, #c8780a 100%);
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 100px;
+  box-shadow: 0 4px 20px rgba(200, 120, 10, 0.4);
+  transition: transform 0.2s var(--ease-back), box-shadow 0.2s ease;
+}
+
+.cardCta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(200, 120, 10, 0.6);
+}
+
+/* ── Card F — quote ─────────────────────────────────────── */
+.quote {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 700;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.quoteCite {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — TABLET
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .cardA { grid-column: 1 / 3; grid-row: auto; min-height: 280px; flex-direction: row; align-items: flex-end; }
+  .cardB { grid-column: 1 / 3; grid-row: auto; }
+  .cardC { grid-column: 1;     grid-row: auto; }
+  .cardD { grid-column: 2;     grid-row: auto; }
+  .cardE { grid-column: 1 / 3; grid-row: auto; }
+  .cardF { grid-column: 1 / 3; grid-row: auto; }
+
+  .cardWaffleArt { margin-top: 0; margin-left: auto; }
+  .statRow { justify-content: space-evenly; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE — MOBILE
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cardA,
+  .cardB,
+  .cardC,
+  .cardD,
+  .cardE,
+  .cardF {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .cardA { flex-direction: column; min-height: auto; }
+  .statRow { flex-wrap: wrap; gap: 20px; }
+  .statDivider { display: none; }
+  .stat { flex: 0 0 calc(50% - 10px); }
+}

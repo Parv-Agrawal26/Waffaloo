@@ -1,0 +1,16 @@
+/* ─── Fixed fullscreen canvas behind everything ─────────────── */
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  display: block;
+  /* Prevent canvas from capturing pointer events */
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  /* Avoid sub-pixel blurring on some browsers */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}

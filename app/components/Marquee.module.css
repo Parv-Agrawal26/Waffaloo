@@ -1,0 +1,132 @@
+.section {
+  position: relative;
+  width: 100%;
+  padding: 100px 0 90px;
+  background: var(--bg-deep);
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 52px;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Edge fade mask ─────────────────────────────────────── */
+.mask {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mask::before,
+.mask::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(60px, 10vw, 140px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mask::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-deep) 0%, transparent 100%);
+}
+
+.mask::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-deep) 0%, transparent 100%);
+}
+
+/* ── Track wrapper ──────────────────────────────────────── */
+.trackWrapper {
+  overflow: hidden;
+  padding: 22px 0;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.trackWrapper:last-child {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* ── Scrolling track ────────────────────────────────────── */
+.track {
+  display: flex;
+  list-style: none;
+  width: max-content;
+  animation: scrollLeft 32s linear infinite;
+  will-change: transform;
+}
+
+.trackReverse {
+  animation: scrollRight 36s linear infinite;
+}
+
+@keyframes scrollLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes scrollRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Individual item ────────────────────────────────────── */
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 clamp(32px, 5vw, 72px);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.itemLabel {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(240, 232, 212, 0.45);
+  transition: color 0.2s ease;
+}
+
+.item:hover .itemLabel {
+  color: rgba(240, 232, 212, 0.85);
+}
+
+.item:hover .dot {
+  opacity: 1;
+}
+
+/* ── Pause on hover ─────────────────────────────────────── */
+.trackWrapper:hover .track {
+  animation-play-state: paused;
+}
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}

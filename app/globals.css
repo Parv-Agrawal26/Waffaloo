@@ -1,0 +1,46 @@
+/* ─── Design Tokens ──────────────────────────────────────── */
+:root {
+  --bg-deep:        #0c0a08;
+  --bg-card:        #131009;
+  --gold-primary:   #e8a020;
+  --gold-light:     #f5c842;
+  --gold-glow:      #c8780a;
+  --honey:          #d4711a;
+  --cream:          #f0e8d4;
+  --cream-dim:      #c8bfa8;
+  --text-primary:   #f5ede0;
+  --text-muted:     #8a7d68;
+  --border-subtle:  rgba(232, 160, 32, 0.12);
+
+  --font-display:   var(--font-playfair), Georgia, serif;
+  --font-body:      var(--font-inter), system-ui, sans-serif;
+
+  --ease-expo:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-back:      cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-glow); border-radius: 4px; }

@@ -1,0 +1,24 @@
+/* ─── Tall scroll container ─────────────────────────────────────
+   400vh gives enough scroll range for 100 frames to feel cinematic.
+   Position relative so ScrollScene can getBoundingClientRect on it.
+──────────────────────────────────────────────────────────────── */
+.scrollContainer {
+  position: relative;
+  width: 100%;
+  height: 700vh;
+}
+
+/* ─── Sticky slot ───────────────────────────────────────────────
+   Sticks to the top of the viewport for the full 400vh scroll.
+   The hero UI (nav, brand text, CTAs, etc.) lives here.
+   z-index 10 keeps it above the canvas (z-index 0).
+──────────────────────────────────────────────────────────────── */
+.stickyViewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  /* No background — canvas shows through */
+  background: transparent;
+}
