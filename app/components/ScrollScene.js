@@ -6,7 +6,7 @@ import styles from "./ScrollScene.module.css";
 // ─── Config ──────────────────────────────────────────────────────────────────
 const TOTAL_FRAMES = 100;
 const FRAME_PATH = (n) =>
-  `/frames/ezgif-frame-${String(n).padStart(3, "0")}.png`;
+  `https://res.cloudinary.com/dq9lvxqef/image/upload/f_auto,q_auto/ezgif-frame-${String(n).padStart(3, "0")}.png`;
 
 // Lerp factor — higher = snappier catch-up (0.08 = silky smooth)
 const LERP = 0.1;
