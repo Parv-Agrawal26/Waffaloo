@@ -1,3 +1,4 @@
+"use client";
 import styles from "./Footer.module.css";
 
 const NAV = ["About", "Menu", "Locations", "Catering", "Contact"];
