@@ -12,13 +12,16 @@ export default function Loader() {
       setFading(true);
       setTimeout(() => setGone(true), 400);
     };
-    const imgs = Array.from({ length: 100 }, (_, i) => {
+    const promises = Array.from({ length: 100 }, (_, i) => {
       const n = String(i + 1).padStart(3, "0");
-      const img = new Image();
-      img.src = `https://res.cloudinary.com/dq9lvxqef/image/upload/f_auto,q_auto/ezgif-frame-${n}.png`;
-      return new Promise((res) => { img.onload = res; img.onerror = res; });
+      return new Promise((res) => {
+        const img = new Image();
+        img.onload = res;
+        img.onerror = res;
+        img.src = `https://res.cloudinary.com/dq9lvxqef/image/upload/f_auto,q_auto/ezgif-frame-${n}.png`;
+      });
     });
-    Promise.all(imgs).then(hide);
+    Promise.all(promises).then(hide);
     const t = setTimeout(hide, 15000);
     return () => clearTimeout(t);
   }, []);
