@@ -246,7 +246,7 @@ export default function ScrollScene({ scrollRef }) {
       const scrolled    = Math.max(0, -rect.top);
       const progress    = Math.min(1, scrolled / totalScroll);
       // Map frames to first 75% of scroll — last 25% holds the final frame as a pause
-      const FRAME_END   = 0.6;
+      const FRAME_END   = 0.8;
       const frameProgress = Math.min(1, progress / FRAME_END);
       s.targetFrame     = frameProgress * (TOTAL_FRAMES - 1);
 
